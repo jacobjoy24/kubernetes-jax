@@ -231,8 +231,6 @@ kubectl apply -f service.yml
 **ReplicaSet** - Is to maintain a stable set of replica pods running at any given time
 **Ingress** - Exposes HTTP and HTTPS routes from outside the cluster to the service
 **Kublet** - The primary node agent that runs on each node, agent to report and                 maintain node health
-
-![[Pasted image 20231004165008.png]]
  
 
 Additional Info
@@ -247,7 +245,6 @@ Temp Docker Registry - https://ttl.sh
 Git Registry - https://about.gitea.com
 Docker CI/CD - Woodpecker CI or Drone
 Continuous Delivery Tool - https://argo-cd.readthedocs.io/en/stable/
-Local development for K8s - https://www.telepresence.io
-								 https://gefyra.dev
+Local development for K8s - https://www.telepresence.io https://gefyra.dev
 
   
