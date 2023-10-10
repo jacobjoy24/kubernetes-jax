@@ -1,0 +1,16 @@
+Generate Pod yaml from kubectl run output
+
+$ kubectl run demo --image ghcr.io/trion-development/echoserver:1 --env foo=bar \
+--dry-run=client -o yaml > pod.yaml
+
+Inspect the generated YAML file.
+
+$ cat pod.yaml
+
+Create a Pod from the YAML manifest.
+
+$ kubectl create -f pod.yaml
+
+Inspect the state
+
+$ kubectl get pods

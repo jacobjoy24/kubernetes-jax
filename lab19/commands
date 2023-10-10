@@ -1,0 +1,30 @@
+See lab16/18 for initial setup of php-app and Service.
+
+Change the Service to NodePort using "edit", YAML manifest and "apply" or a "patch"
+
+$ kubectl edit service php-app
+$ kubectl patch service php-app -p '{"spec": {"type": "NodePort"}}'
+$ kubectl apply -f service.yaml
+
+Describe the Service to determine the randomly chosen NodePort
+
+$ kubectl describe service php-app
+
+Determine IP of a node and access the port on the node ip.
+
+When using minikube
+- minikube ip
+
+When using Docker Desktop
+- use localhost or run from inside the docker vm
+- docker run -it --name shell --rm --net=host trion/curl
+
+When using the workshop cluster:
+- use IP 10.23.204.30
+
+When using cloud cluster with externally reachable nodes:
+- kubectl get nodes -o wide
+
+With the IP determined, access a node with the port from the service:
+
+$ curl http://<node-ip>:<service-node-port>

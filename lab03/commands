@@ -1,0 +1,8 @@
+Start a Pod
+
+$ kubectl run --image ghcr.io/trion-development/echoserver:1 demo
+
+Check status of all Pods
+
+$ kubectl get pods
+

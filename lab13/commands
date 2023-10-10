@@ -1,0 +1,10 @@
+Watch for Pod changes and events each in one terminal
+
+$ kubectl get pods --watch
+$ kubectl get events --watch
+
+Change the image of the Pod from a different terminal.
+
+$ kubectl apply -f 0-pod-new-image.yaml
+or
+$ kubectl set image pod demo demo=ghcr.io/trion-development/echoserver:1

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: php-app
+spec:
+  # can be used to choose specific implementation,
+  # leave out for default
+  #ingressClassName: traefik-cert-manager
+  rules:
+  - host: php-app-student01.t9v.de #adjust for your cluster
+    http:
+      paths:
+      - backend:
+          service:
+            name: php-app
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+# allowed in workshop cluster:
+#  tls:
+#  - hosts:
+#    - php-app-student01.t9v.de

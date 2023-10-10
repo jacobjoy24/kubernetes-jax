@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: php-app
+  labels:
+    run: demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: demo
+  template:
+      metadata:
+        labels:
+          run: demo
+      spec:
+        containers:
+        - image: ttl.sh/${IMAGE_NAME}:8h
+          name: app
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi

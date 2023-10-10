@@ -1,0 +1,21 @@
+When using cloud cluster:
+- skip this lab (node access usually not possible)
+
+When using the workshop cluster:
+- open web terminal (button on right side of upper title bar; or use code-server terminal)
+
+When using minikube
+- Open a separate terminal
+- Execute `minikube ssh`
+
+When using docker desktop:
+- Open a separate terminal
+- Execute `docker run --name shell -it --rm --net=host trion/curl`
+
+Determine IP of target Pod
+
+$ kubectl get pods -o wide
+
+Call the http service on port 3000 on the Pod ip
+
+$ curl http://<IP>:3000

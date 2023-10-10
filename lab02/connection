@@ -1,0 +1,41 @@
+When using the workshop cluster:
+- reserve your slot
+- access web based dashboard
+- use the credentials of your slot (username/password identical)
+- select the cluster that belongs to your slot
+- open web terminal (button on right side of upper title bar)
+- consider using VSCode with kubernetes addon either locally or web based in workshop cluster
+- inspect your $HOME/.kube/config
+
+
+When using cloud cluster:
+- use cloud shell with kubectl
+- ...or download kubeconfig and place in $HOME/.kube/config
+- inspect your $HOME/.kube/config
+
+
+When using minikube or docker desktop:
+- kubectl should be automatically configured
+- inspect your $HOME/.kube/config
+
+
+Execute commands
+
+$ kubectl get nodes
+
+$ kubectl config view
+
+
+Remote access of workshop cluster (optional):
+
+- Export workshop cluster configuration for remote access
+
+$ cat .kube/config
+
+- Copy to local file on your machine
+- Adjust hostname, replacing domain studentXX-vcluster with workshop domain
+- If "certificate-authority-data" is present, remove it (from VSCode terminal)
+- place file in $HOME/.kube/config or point environment variable KUBECONFIG to file
+
+$ KUBECONFIG=./sample.yaml kubectl get nodes
+

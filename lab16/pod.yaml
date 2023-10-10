@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: demo
+  name: php-app
+spec:
+  containers:
+  - name: app
+    image: ttl.sh/${IMAGE_NAME}:8h
+    ports:
+    - containerPort: 80
+    resources:
+      requests:
+        cpu: 50m
+        memory: 64Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi

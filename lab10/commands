@@ -1,0 +1,10 @@
+Query for all Pods and your running Pod with output in YAML format
+
+$ kubectl get pods -o yaml
+$ kubectl get pod demo -o yaml
+
+
+Query for all Pods and your running Pod with output in JSON format
+
+$ kubectl get pods -o json
+$ kubectl get pod demo -o json

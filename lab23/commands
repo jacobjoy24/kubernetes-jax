@@ -1,0 +1,44 @@
+For Docker Desktop: Ensure no LoadBalancer is on port 80.
+You can set the type for Services to ClusterIP or remove them, if not needed.
+
+$ kubectl get svc -A
+
+Setup nginx as simple Ingress implementation.
+
+When using the workshop cluster:
+- Ingress is already installed
+
+When using minikube:
+- minikube addons enable ingress
+
+When using Docker Desktop:
+- kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.7.1/deploy/static/provider/cloud/deploy.yaml
+
+When using cloud cluster:
+- Depending on cloud provider
+
+
+Determine the domain/suffix to build your host rule.
+
+When using the workshop cluster:  <name>-studentXX.t9v.de
+
+When using minikube:
+- Determine IP with "minikube ip"
+- <name>.<node-ip>.nip.io
+
+When using Docker Desktop:
+- <name>.localhost
+
+When using cloud cluster:
+- Depending on cloud provider
+
+
+Create an Ingress for your application Service.
+Note: Use "tls" only for the workshop cluster, not for Docker Desktop or minikube based setups.
+
+$ kubectl create ingress php-app --rule="<hostname>/*=php-app:80"
+$ kubectl create ingress php-app --rule="<hostname>/*=php-app:80,tls"
+
+Or adjust the "ingress.yaml" in this directory accordingly and apply it.
+
+

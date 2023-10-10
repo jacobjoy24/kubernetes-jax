@@ -1,0 +1,14 @@
+Remember to switch to the right Namespace in case you changed it in the previous lab.
+
+$ kubectl config set-context --current --namespace=workshop
+
+Continue with the setup from lab23
+
+Create ReplicaSet based on the php-app Pod by copying the manifest or requesting it from the cluster.
+
+$ kubectl get pod php-app -o yaml
+
+When using output from API server remove "resourceVersion".
+
+$ export IMAGE_NAME
+$ cat replicaset.yaml | envsubst '${IMAGE_NAME}' | kubectl apply -f -

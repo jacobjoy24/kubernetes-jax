@@ -1,0 +1,55 @@
+Run wordpress (note: data not persisted!)
+
+Create separate Namespace and use it (or specify for subsequent commands).
+
+$ kubectl create wordpress
+$ kubectl config set-context --current --namespace=wordpress
+
+Create MariaDB Pod, configuring environment, labels and port 3306:
+- MARIADB_ROOT_PASSWORD=s3cr3t
+- MARIADB_USER=wordpress
+- MARIADB_PASSWORD=w0rdpre33
+- MARIADB_DATABASE=wordpress
+
+(Note: Specification of Namespace is optional if context is configured to use it)
+
+$ kubectl -n wordpress run mariadb --image bitnami/mariadb --labels app=mariadb --port 3306 --env MARIADB_ROOT_PASSWORD=s3cr3t --env MARIADB_USER=wordpress --env MARIADB_PASSWORD=w0rdpre33 --env MARIADB_DATABASE=wordpress
+
+Create Service for MariaDB. 
+
+$ kubectln -n wordpress expose pod mariadb
+
+Create Wordpress Pod, configuring environment, labels and port 8080:
+- WORDPRESS_PASSWORD=workshop
+- WORDPRESS_DATABASE_USER=wordpress
+- WORDPRESS_DATABASE_PASSWORD=w0rdpre33
+- WORDPRESS_DATABASE_NAME=wordpress
+
+$ kubectl -n wordpress run wordpress --image bitnami/wordpress --labels app=wordpress --env WORDPRESS_PASSWORD=workshop --env WORDPRESS_DATABASE_USER=wordpress --env WORDPRESS_DATABASE_PASSWORD=w0rdpre33 --env WORDPRESS_DATABASE_NAME=wordpress --env WORDPRESS_ENABLE_HTTPS=false --port 8080
+
+Create Service for Wordpress
+
+$ kubectl -n wordpress expose pod wordpress
+
+Create ingress to access Wordpress service (note "tls" is only required for the workshop cluster)
+
+$ kubectl -n wordpress create ingress wordpress --rule="wordpress-student01.t9v.de/*=wordpress:8080,tls"
+
+
+Instead of creating each object with kubectl the provided manifests can be adjusted and used:
+
+$ kubectl -n wordpress apply -f .
+
+Observe status
+
+$ kubectln -n wordpress get all,ingresses
+
+Access wordpress using the Ingress domain:
+https://wordpress-student01.t9v.de
+
+Login at /wp-admin/ path with user "user" and password "workshop".
+
+
+Cleanup by removing the Namespace
+
+$ kubectl delete namespace wordpress

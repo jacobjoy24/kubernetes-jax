@@ -1,0 +1,44 @@
+Enable metrics server to provide cluster metrics.
+
+When using the workshop cluster, docker desktop or cloud cluster:
+- kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+When using minikube:
+- minikube addons enable metrics-server
+
+
+
+Add resource requests and limits to Pod definition.
+
+Use YAML from filesystem or obtain Pod definition.
+
+$ kubectl get pod demo -o yaml > pod.yaml
+
+Edit YAML file
+
+$ nano pod.yaml
+
+add resources section with requests and limits
+
+spec:
+  containers:
+    image: ghcr.io/trion-development/echoserver:2
+
+See "pod-resources.yaml" for reference.
+
+When using output from API server remove "resourceVersion".
+
+Apply changes by replacing existing Pod object
+
+$ kubectl replace --force -f pod.yaml
+
+Verify the resources by inspecting the Pod:
+
+$ kubectl describe pod demo
+
+
+
+Query metrics for nodes and pods
+
+$ kubectl top nodes
+$ kubectl top pods

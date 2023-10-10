@@ -1,0 +1,38 @@
+Use YAML from filesystem or obtain Pod definition.
+
+$ kubectl get pod demo -o yaml > pod.yaml
+
+Edit YAML file
+
+$ nano pod.yaml
+
+and perform change of image:
+
+spec:
+  containers:
+    image: ghcr.io/trion-development/echoserver:2
+
+See file "0-pod-new-image.yaml" for reference.
+
+Note: When using output from API server remove "resourceVersion" to prevent optimistic locking.
+
+Apply changes
+
+$ kubectl apply -f pod.yaml
+
+
+Edit YAML file, add container port:
+
+spec:
+  containers:
+    ports:
+    - containerPort: 3000
+
+See file "1-pod-add-port.yaml" for reference.
+
+Note that neither "apply" nor "replace" work, but "replace --force" does
+
+$ kubectl apply -f pod.yaml
+$ kubectl replace -f pod.yaml
+$ kubectl replace --force -f pod.yaml
+

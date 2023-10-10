@@ -1,0 +1,21 @@
+Retrieve Pods showing all labels
+
+$ kubectl get pods --show-labels
+
+Select Pods using label selector
+
+$ kubectl get pods -l run=demo
+
+Delete Pods using label selector
+
+$ kubectl delete pods -l run=demo
+
+Watch for Pods using label selector in all namespaces.
+
+$ kubectl get pods -l lbl=demo --watch --show-labels -A
+
+Use a different terminal to create a matching Pod.
+
+$ kubectl run sample --labels lbl=demo --image ghcr.io/trion-development/echoserver:1
+or
+$ kubectl apply -f pod.yaml

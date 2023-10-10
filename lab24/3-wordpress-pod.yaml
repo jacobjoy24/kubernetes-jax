@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wordpress
+  labels:
+    app: wordpress
+spec:
+  containers:
+  - env:
+    - name: WORDPRESS_PASSWORD
+      value: workshop
+    - name: WORDPRESS_DATABASE_USER
+      value: wordpress
+    - name: WORDPRESS_DATABASE_PASSWORD
+      value: w0rdpre33
+    - name: WORDPRESS_DATABASE_NAME
+      value: wordpress
+    image: bitnami/wordpress
+    name: wordpress
+    ports:
+    - containerPort: 8080
+    resources: {}

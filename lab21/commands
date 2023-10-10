@@ -1,0 +1,24 @@
+Continue with setup from lab 20
+
+Create a second Pod with the same labels but a different name.
+
+$ kubectl run php-app-two --image ttl.sh/${IMAGE_NAME}:8h --port 80
+
+or adjust the "second-pod.yaml" in this folder to match your image name to define the Pod.
+Example for automatic replacement of the image name:
+
+$ export IMAGE_NAME
+$ cat second-pod.yaml | envsubst '${IMAGE_NAME}' | kubectl apply -f -
+
+
+Describe the Service and verify that multiple Endpoints are liste.
+
+$ kubectl describe service php-app
+
+
+Access the service repeatedly and note that the hostname value changes.
+
+$ curl http://php-app
+
+When using a web browser: HTTP keepalive is reusing the same TCP connection.
+Subsequent requests will be answered by same Pod until the connection is closed.

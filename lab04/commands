@@ -1,0 +1,14 @@
+Start a Pod with a bad image
+
+$ kubectl run --image ghcr.io/trion-development/echoserver:bad badpod
+
+Check status of all Pods
+
+$ kubectl get pods
+
+Pod with bad image does not start.
+Status: ErrImagePull, ImagePullBack
+
+Use describe to obtain details
+
+$ kubectl describe pod badpod

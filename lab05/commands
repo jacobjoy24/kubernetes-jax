@@ -1,0 +1,7 @@
+Change image of a container in a Pod
+
+$ kubectl set image pod badpod badpod=ghcr.io/trion-development/echoserver:2
+
+Observe that the container starts and Pod status changes to running
+
+$ kubectl get pods

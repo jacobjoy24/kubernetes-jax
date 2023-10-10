@@ -1,0 +1,23 @@
+Use one of the following options to obtain a cluster for the training
+
+- minikube
+- docker desktop
+- provided workshop cluster
+- cloud cluster
+
+Minikube setup with docker or VirtualBox:
+
+* https://www.virtualbox.org/wiki/Downloads
+* https://minikube.sigs.k8s.io/docs/start/
+
+
+Start minikube
+
+$ minikube start --cpus 2 --memory 4096
+or
+$ minikube start --cpus 2 --memory 4096 --ports 80:80 --driver docker
+
+
+Setup kubectl 
+
+* https://kubernetes.io/docs/tasks/tools/

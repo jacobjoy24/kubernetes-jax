@@ -1,0 +1,23 @@
+Create Pod with image ghcr.io/trion-development/echoserver:2
+
+$ kubectl run --image ghcr.io/trion-development/echoserver:2 demo
+
+Open a shell by executing /bin/sh in interactive mode with tty
+
+$ kubectl exec -it demo -- /bin/sh
+
+Use "ps" or "top" to obtain process id of server process.
+
+Or by using /proc filesystem:
+
+$ ls -l /proc/*/exe
+
+Kill the "ld-linux-..." process with SIGTERM
+
+$ kill -s TERM 1
+
+Observe that kubectl restarts the container automatically
+
+$ kubectl get pods
+
+Note the restart count and ready state of the Pod

@@ -1,0 +1,17 @@
+# Service Discovery
+
+See lab16 for initial setup of php-app.
+
+Create a Service with name php-app either by using "expose" or "create service"
+
+$ kubectl expose pod php-app
+
+or use the "service.yaml" in this folder
+
+$ kubectl apply -f service.yaml
+
+
+Access HTTP port from interactive Pod using the service name
+
+$ kubectl run shell --rm -it --image trion/curl
+$ curl http://php-app

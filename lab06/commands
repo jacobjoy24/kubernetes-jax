@@ -1,0 +1,17 @@
+Create a Pod that executes a single command
+
+For example
+
+$ kubectl run clock --image ghcr.io/trion-development/echoserver:1 date
+
+Obtain output from the Pod and observe Pod status
+
+$ kubectl logs clock
+$ kubectl get pods
+
+Add restartPolicy and observe the changed behaviour
+
+$ kubectl run clock --image ghcr.io/trion-development/echoserver:1 --restart=Never date
+
+$ kubectl logs clock
+$ kubectl get pods

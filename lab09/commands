@@ -1,0 +1,20 @@
+Goal: Access Pod from another Pod
+
+- Determine IP of the target Pod
+- Start an interactive Pod and use curl to access the target pod
+- Note: When starting a Pod with --rm and -it it is deleted after exiting the shell
+
+$ kubectl get pods -o wide
+$ kubectl run shell --rm -it --image=trion/curl 
+$ curl http://<pod-ip>:3000
+
+It is not possible to use the name of the Pod instead of the IP.
+
+
+Clean up all running Pods after this lab
+
+$ kubectl delete pods --all
+
+and start a fresh instance of the 'demo' pod
+
+$ kubectl run --image ghcr.io/trion-development/echoserver:2 demo

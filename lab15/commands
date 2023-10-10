@@ -1,0 +1,27 @@
+Delete Pods from default namespace
+
+$ kubectl delete pods --all -n default
+
+
+Create Namespace "workshop"
+
+$ kubectl create namespace workshop
+
+
+Configure "workshop" namespace as default
+
+$ kubectl config set-context --current --namespace=workshop
+
+
+Create new pod in "workshop" namespace
+
+$ kubectl run demo --image ghcr.io/trion-development/echoserver:1
+
+or
+
+$ kubectl apply -f pod.yaml
+
+
+Query all pods, notice the namespace shown in output
+
+$ kubectl get pods -A

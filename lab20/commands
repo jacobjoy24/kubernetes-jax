@@ -1,0 +1,16 @@
+See lab16/18 for initial setup of php-app and Service.
+
+Change the Service to LoadBalancer using "edit", YAML manifest and "apply" or a "patch"
+
+$ kubectl edit service php-app
+$ kubectl patch service php-app -p '{"spec": {"type": "LoadBalancer"}}'
+$ kubectl apply -f service.yaml
+
+When using minikube run in a spearate terminal
+- minikube ip
+
+Describe the Service to determine the chosen IP and access it using curl
+
+$ kubectl describe service php-app
+
+$ curl http://<loadbalancer-ip>:<service-port>

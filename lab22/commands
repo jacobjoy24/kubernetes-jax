@@ -1,0 +1,51 @@
+Build a new image from your PHP application that includes failure simulation.
+
+Linux
+$ IMAGE_NAME=$(uuidgen)
+
+macOS
+$ IMAGE_NAME=$(uuidgen | tr "[:upper:]" "[:lower:]")
+
+$ docker build -t ttl.sh/${IMAGE_NAME}:8h .
+$ docker push ttl.sh/${IMAGE_NAME}:8h
+
+Add readinessProbe and livenessProbe to the Pod definition with different thresholds
+and use the new image.
+
+spec:
+  containers:
+    livenessProbe:
+      httpGet:
+        port: 80
+      failureThreshold: 5
+      periodSeconds: 4
+    readinessProbe:
+      httpGet:
+        port: 80
+      failureThreshold: 2
+      periodSeconds: 2
+
+
+$ kubectl run php-app --image ttl.sh/${IMAGE_NAME}:8h --port 80
+
+or adjust the "pod.yaml" in this folder by using the chosen image name to define the Pod.
+
+Linux example for automatic replacement of placeholder:
+
+$ export IMAGE_NAME
+$ cat pod.yaml | envsubst '${IMAGE_NAME}' | kubectl apply -f -
+
+
+Use a separate terminal to watch the Pod status (ready) and the Endpoints
+
+$ kubectl get endpoints --watch
+$ kubectl get pods --watch
+
+
+Trigger the failure by creating a file in the Pod.
+
+
+$ kubectl exec php-app -- touch /fail
+
+
+Observe that the Pod is taken out of service and after automatic restart it becomes part of the Service again.
