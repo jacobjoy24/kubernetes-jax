@@ -1,17 +1,18 @@
 Official Documentation: https://kubernetes.io/docs/home/
 
-Why ?
-	Service discovery and load balancing
-	Storage Orchestration
-	Automated rollouts and rollbacks
-	Automatic bin packing
-	Self healing
+Why ? \
+	\
+        Service discovery and load balancing\
+	Storage Orchestration\
+	Automated rollouts and rollbacks\
+	Automatic bin packing\
+	Self healing\
 	Secret and configuration Management
 
 
 Create the **K8cluster**
 
-```
+``` shell
 kubectl get nodes
 kubectl config view
 
@@ -27,7 +28,7 @@ kubectl get nodes
 
 **Pods** are the smallest deployable units of computing that you can create and manage in Kubernetes. A Pod is a group of one or more *containers* (Is a standard unit of software that packages up code and all its dependencies), with shared storage and network resources, and a specification for how to run the containers.
 
-```
+``` Shell
 kubectl run --image ghcr.io/trion-development/echoserver:1 demo
 kubectl get pods
 
@@ -110,7 +111,7 @@ spec:
 
 ```
 
-```
+```Shell
 # Apply the changes
 
 kubectl apply -f pod.yaml
@@ -131,7 +132,7 @@ kubectl top pods
 
 **Namespace** - isolating groups of resources within a single cluster
 
-```
+```Shell
 # Delete all pods in default namespace
 kubectl delete pods --all -n default
 
@@ -160,7 +161,7 @@ COPY index.php /var/www/html
 
 ```
 
-```
+```YAML
 apiVersion: v1
 kind: Pod
 metadata:
@@ -181,7 +182,7 @@ spec:
         cpu: 100m
         memory: 64Mi
 ```
-```
+```Dockerfile
 
 IMAGE_NAME=$(uuidgen)
 docker build -t ttl.sh/${IMAGE_NAME}:8h .
@@ -203,7 +204,7 @@ kubectl get pods --show-labels
 	    type: LoadBalancer
 		type: ExternalName (DNS)
 	
-```
+```YAML
 apiVersion: v1
 kind: Service
 metadata:
@@ -226,25 +227,26 @@ kubectl apply -f service.yml
 
 
 **Scheduling** - refers to make sure that Pods are matched to Nodes 
-			   kublet can run them
-**etcd** - etcd database stores cluster state
-**ReplicaSet** - Is to maintain a stable set of replica pods running at any given time
-**Ingress** - Exposes HTTP and HTTPS routes from outside the cluster to the service
-**Kublet** - The primary node agent that runs on each node, agent to report and                 maintain node health
+			   kublet can run them\
+**etcd** - etcd database stores cluster state\
+**ReplicaSet** - Is to maintain a stable set of replica pods running at any given time\
+**Ingress** - Exposes HTTP and HTTPS routes from outside the cluster to the service\
+**Kublet** - The primary node agent that runs on each node, agent to report and maintain node health
  
 
 Additional Info
 
 Configuration Management - https://kustomize.io
-Package Manger - https://helm.sh
-Live Environment - https://killercoda.com
-Jsonnet - https://jsonnet.org
-Docker Swarm - Orchestration of the docker container
-Jib Build without using Docker Dameon
-Temp Docker Registry - https://ttl.sh
-Git Registry - https://about.gitea.com
-Docker CI/CD - Woodpecker CI or Drone
-Continuous Delivery Tool - https://argo-cd.readthedocs.io/en/stable/
+ \
+Package Manger - https://helm.sh \
+Live Environment - https://killercoda.com \
+Jsonnet - https://jsonnet.org \
+Docker Swarm - Orchestration of the docker container \
+Jib Build without using Docker Dameon \
+Temp Docker Registry - https://ttl.sh \
+Git Registry - https://about.gitea.com \
+Docker CI/CD - Woodpecker CI or Drone \
+Continuous Delivery Tool - https://argo-cd.readthedocs.io/en/stable/ \
 Local development for K8s - https://www.telepresence.io https://gefyra.dev
 
   
